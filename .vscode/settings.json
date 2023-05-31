@@ -1,0 +1,7 @@
+{
+    "livePreview.defaultPreviewPath": "/main.html",
+    "editor.tokenColorCustomizations": {
+        "comments": "#eef202"
+    }
+    
+}

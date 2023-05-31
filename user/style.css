@@ -1,0 +1,19 @@
+.chat{
+    font-family: 'Monomaniac One', sans-serif;
+    color:aquamarine;
+    background-color: cadetblue;
+    font-size: large;
+    position: absolute;
+    bottom: 3%;
+    left: 48%;
+    transform: translateX(-50%);
+}
+
+.sumbit{
+    background: #202124;
+    background-color: #202124;
+    border: none;
+    position: absolute;
+    bottom: 1.5%;
+    left: 96%;
+}

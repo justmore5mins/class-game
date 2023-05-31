@@ -1,0 +1,39 @@
+.title{
+    color: aquamarine;
+    text-align: center;
+    font-style: italic;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.inputbox{
+    width: 97%;
+    height: 30px;
+    position: absolute;
+    bottom: 2.5%;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.login{
+    width: auto;
+    height: 30px;
+    position: absolute;
+    top: 18%;
+    left: 40%;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.sumbit{
+    font-family: 'JetBrains Mono', monospace;
+    position: absolute;
+    top: 25%;
+    left: 47%;
+    color: #202124;
+    background-color: #202124;
+}
+
+.chatself{
+    font-family: 'JetBrains Mono', monospace;
+    color: #202124;
+    background-color: #202124;
+    position: absolute;
+}

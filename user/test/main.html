@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<head>
+    <script>
+        function childjs(){
+            console.log(localStorage.getItem("username"));
+        }
+        var thing = {
+            "username": "justmore5mins",
+            "password": "123a456b",
+            "Authority": "admin"
+        };
+        function mainfunction(){
+            localStorage.setItem("username",JSON.stringify(thing));
+            console.log("data sented!");
+        }
+    </script>
+    <button onclick="mainfunction()">setitem</button>
+    <button onclick="childjs()">getitem</button>
+</head>

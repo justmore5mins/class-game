@@ -1,0 +1,9 @@
+{
+    "Justmore5mins":{
+        "permissions":"author"
+    },
+    "admin":{
+        "permissions":"admin"
+    },
+
+}
