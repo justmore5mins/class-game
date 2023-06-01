@@ -21,11 +21,10 @@ function getchat() {
     "decrypt": chat,
     "caesar": caesar(chat,move),
     "move": move,
-    "time": {
-        "hour": timeelem.getHours(),
-        "minutes": timeelem.getMinutes(),
-        "seconds": timeelem.getSeconds(),
-        "millisecons": timeelem.getMilliseconds(),
+    "hour": timeelem.getHours,
+    "minutes": timeelem.getMinutes,
+    "seconds": timeelem.getSeconds,
+    "milliseconds": timeelem.getMilliseconds
       }
     };
     /*
@@ -34,7 +33,6 @@ function getchat() {
   */
   console.log(chatdata);
   }
-}
 
 function caesar(str, num) {
   let newString = "";
