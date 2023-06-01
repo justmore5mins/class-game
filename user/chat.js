@@ -11,6 +11,7 @@ function getchat() {
   } 
   else if(chat === "/clear chat localstorage"){
     localStorage.clear()
+    console.log("localstorage cleared")
   }
   else{
     var move = Math.floor(Math.random()*max)+min;
@@ -27,8 +28,11 @@ function getchat() {
         "millisecons": timeelem.getMilliseconds(),
       }
     };
-  
-   console.log(JSON.stringify(chatdata));
+    /*
+  var fs = require("fs");
+  fs.writeFileSync("chat.json",JSON.stringify(chatdata));
+  */
+  console.log(chatdata);
   }
 }
 
