@@ -1,4 +1,5 @@
 function redirect() {
+  localStorage.clear();
   var username = document.getElementById("username").value;
 
   if (username === "Justmore5mins") {

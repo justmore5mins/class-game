@@ -9,7 +9,10 @@ function getchat() {
   if (chat === "/clear console") {
     console.clear();
   } 
-  else {
+  else if(chat === "/clear chat localstorage"){
+    localStorage.clear()
+  }
+  else{
     var move = Math.floor(Math.random()*max)+min;
     var sentuser = localStorage.getItem("username");
     var chatdata = {
@@ -25,7 +28,7 @@ function getchat() {
       }
     };
   
-   console.log(chatdata);
+   console.log(JSON.stringify(chatdata));
   }
 }
 
