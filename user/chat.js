@@ -4,35 +4,42 @@ function getchat() {
   const max = 10;
   const chat = ChatElem.value;
   const timeelem = new Date();
+  var username = localStorage.getItem("username");
   ChatElem.value = "";
 
   if (chat === "/clear console") {
-    console.clear();
-  } 
-  else if(chat === "/clear chat localstorage"){
-    localStorage.clear()
-    console.log("localstorage cleared")
-  }
-  else{
-    var move = Math.floor(Math.random()*max)+min;
+    if (username === "justmore5mins" || "admin" || "Admin") {
+      console.clear();
+    } else {
+      console.log("You don't have so much permission to do it");
+    }
+  } else if (chat === "/clear chat localstorage") {
+    if (username === "justmore5mins" || "admin" || "Admin") {
+      localStorage.clear();
+      console.log("localstorage cleared");
+    } else {
+      console.log("You don't have so much permission to do it");
+    }
+  } else {
+    var move = Math.floor(Math.random() * max) + min;
     var sentuser = localStorage.getItem("username");
     var chatdata = {
-    "user": sentuser,
-    "decrypt": chat,
-    "caesar": caesar(chat,move),
-    "move": move,
-    "hour": timeelem.getHours,
-    "minutes": timeelem.getMinutes,
-    "seconds": timeelem.getSeconds,
-    "milliseconds": timeelem.getMilliseconds
-      }
+      user: sentuser,
+      decrypt: chat,
+      caesar: caesar(chat, move),
+      move: move,
+      hour: timeelem.getHours,
+      minutes: timeelem.getMinutes,
+      seconds: timeelem.getSeconds,
+      milliseconds: timeelem.getMilliseconds,
     };
-    /*
+  }
+  /*
   var fs = require("fs");
   fs.writeFileSync("chat.json",JSON.stringify(chatdata));
   */
   console.log(chatdata);
-  }
+}
 
 function caesar(str, num) {
   let newString = "";
