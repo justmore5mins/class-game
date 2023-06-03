@@ -61,3 +61,12 @@ function caesar(str, num) {
   }
   return newString;
 }
+/**
+ def writechat(chat:dict):
+    with open("chat.json","r", encoding="utf-8") as read:
+        data = load(read)
+        data.update(chat)
+        print(data)
+    with open("chat.json","w", encoding="utf-8") as write:
+        dump(data,write,indent=4)
+ */
