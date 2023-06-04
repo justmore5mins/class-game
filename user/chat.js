@@ -1,3 +1,6 @@
+const { error } = require('console');
+const { stdout, stderr } = require('process');
+
 function getchat() {
   const ChatElem = document.getElementById("chat");
   const min = 1;
@@ -26,47 +29,12 @@ function getchat() {
     var chatdata = {
       user: sentuser,
       decrypt: chat,
-      caesar: caesar(chat, move),
       move: move,
-      hour: timeelem.getHours,
-      minutes: timeelem.getMinutes,
-      seconds: timeelem.getSeconds,
-      milliseconds: timeelem.getMilliseconds,
     };
   }
-  /*
-  var fs = require("fs");
-  fs.writeFileSync("chat.json",JSON.stringify(chatdata));
-  */
+  
+  const {exec} = require('./chat.run ');
+  exec('ls',(error, stdout,stderr))
   console.log(chatdata);
 }
 
-function caesar(str, num) {
-  let newString = "";
-  // num %= 26;
-
-  for (let i = 0; i < str.length; i++) {
-    let c = str.charCodeAt(i);
-
-    // 大寫
-    if (c >= 65 && c <= 90) {
-      newString += String.fromCharCode(((c - 65 + num) % 26) + 65);
-    } else if (c >= 97 && c <= 122) {
-      // 小寫
-      newString += String.fromCharCode(((c - 97 + num) % 26) + 97);
-    } else {
-      // 非字母就直接加到輸出的密文
-      newString += str.charAt(i);
-    }
-  }
-  return newString;
-}
-/**
- def writechat(chat:dict):
-    with open("chat.json","r", encoding="utf-8") as read:
-        data = load(read)
-        data.update(chat)
-        print(data)
-    with open("chat.json","w", encoding="utf-8") as write:
-        dump(data,write,indent=4)
- */
