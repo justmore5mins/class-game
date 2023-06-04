@@ -1,16 +1,19 @@
-#include <cstdlib>
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctime>
 #include <map>
+#include "src/jsoncpp/include/json/writer.h"
 #include "src/command.h"
-#include "src/json.hpp"
 
 #define print std::cout
 
 using namespace std;
+using namespace Json;
+
 Caesar caesarenc;
 Time timeelem;
 string caesar;
@@ -70,7 +73,18 @@ int main(int argc, char* argv[]){
     chatdata["seconds"] = seconds;
     chatdata["milliseconds"] = milliseconds;
 
+    Value root(objectValue);
+    for (const auto& entry : chatdata) {
+        root[entry.first] = entry.second;
+    }
 
-    return 0;
+    StyledWriter writer;
+    std::string jsonString = writer.write(root);
+
+    ofstream outputFile("chat.json");
+    if(outputFile.is_open()){
+        outputFile << jsonString;
+        outputFile.close();
+    }
 }
 
