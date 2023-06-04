@@ -4,19 +4,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctime>
+#include <map>
 #include "src/command.h"
+#include "src/json.hpp"
 
 #define print std::cout
 
 using namespace std;
 Caesar caesarenc;
-Time time;
+Time timeelem;
+string caesar;
 
 int main(int argc, char* argv[]){
     int option;
     bool chatFlag = false;
     string username;
     string chat;
+    int shift;
 
 //使用者的程式
     while((option = getopt(argc,argv,"u:r:")) != -1){
@@ -44,36 +48,29 @@ int main(int argc, char* argv[]){
     }
 
     if(!chat.empty()){
-        int shift = caesarenc.random(1, 10);
-        string caesar = caesarenc.caesarencode(chat,shift);
+        shift = caesarenc.random(1, 10);
+        caesar = caesarenc.caesarencode(chat,shift);
     }
 
-    int hour,minutes,seconds,milliseconds;
+    int hoursraw,minutesraw,secondsraw,millisecondsraw;
+    timeelem.gettime(hoursraw, minutesraw, secondsraw, millisecondsraw);  
+    string hours = to_string(hoursraw);
+    string minutes = to_string(minutesraw);
+    string seconds = to_string(secondsraw);
+    string milliseconds = to_string(millisecondsraw);
+
+    map<string, string> chatdata;
+
+    chatdata["username"] = username;
+    chatdata["rawchat"] = chat;
+    chatdata["encoded"] = caesar;
+    chatdata["shift"] = shift;
+    chatdata["hours"] = hours;
+    chatdata["minutes"] = minutes;
+    chatdata["seconds"] = seconds;
+    chatdata["milliseconds"] = milliseconds;
+
 
     return 0;
 }
 
-string caesar(const string& raw, int shift){
-    string encoded = "";
-    int length = raw.length();
-    for(int i = 0; i < length; i++){
-        char ch = raw[i];
-        if(isalpha(ch)){
-            bool isUpperCase = isupper(ch);
-            // 将字符转换为大写形式
-            ch = toupper(ch);
-            // 应用凯撒加密算法
-            ch = ((ch - 'A' + shift) % 26) + 'A';
-            // 根据原始字符的大小写重新设置字符
-            if (!isUpperCase)
-                ch = tolower(ch);
-        }
-        encoded += ch;
-    }
-
-    return encoded;
-}
-
-int random(int min, int max){
-    return rand() % (max - min + 1) + min;
-}
