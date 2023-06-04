@@ -73,13 +73,13 @@ int main(int argc, char* argv[]){
     chatdata["seconds"] = seconds;
     chatdata["milliseconds"] = milliseconds;
 
-    Value root(objectValue);
+    Value chatdatajson(objectValue);
     for (const auto& entry : chatdata) {
-        root[entry.first] = entry.second;
+        chatdatajson[entry.first] = entry.second;
     }
 
     StyledWriter writer;
-    std::string jsonString = writer.write(root);
+    std::string jsonString = writer.write(chatdatajson);
 
     ofstream outputFile("chat.json");
     if(outputFile.is_open()){
