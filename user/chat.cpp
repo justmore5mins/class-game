@@ -7,14 +7,23 @@ using namespace std;
 
 int main(int argc, char* argv[]){
     int option;
+    bool chatFlag = false;
     string username;
+    string chat;
 
-    while((option = getopt(argc,argv,"u:")) != -1){
+//使用者的程式
+    while((option = getopt(argc,argv,"ur:")) != -1){
         switch (option){
         case 'u':
+           if(optarg != nullptr){
             username = optarg;
+           }
             break;
-        
+        case 'r':
+            if(optarg != nullptr){
+                chat = optarg;
+            }
+            break;
         default:
             break;
         }
@@ -25,6 +34,10 @@ int main(int argc, char* argv[]){
     }
     else{
         print << "no user loggin" << endl;
+    }
+
+    if(!chat.empty()){
+        print << "Chat: " << chat << endl;
     }
 
     return 0;
