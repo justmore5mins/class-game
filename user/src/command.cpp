@@ -27,3 +27,15 @@ string Caesar::caesarencode(const string& raw, int shift){
 int Caesar::random(int min, int max){
     return rand() % (max - min + 1) + min;
 };
+
+void Time::gettime(int &hours, int &minutes, int &seconds, int &milliseconds){
+    auto now = chrono::system_clock::now();
+
+    time_t current_time = chrono::system_clock::to_time_t(now);
+    struct std::tm* local_time = std::localtime(&current_time);
+    hours = local_time->tm_hour;
+    minutes = local_time->tm_min;
+    seconds = local_time->tm_sec;
+
+    milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
+}

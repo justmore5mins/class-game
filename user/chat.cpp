@@ -3,12 +3,14 @@
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctime>
 #include "src/command.h"
 
 #define print std::cout
 
 using namespace std;
 Caesar caesarenc;
+Time time;
 
 int main(int argc, char* argv[]){
     int option;
@@ -44,11 +46,9 @@ int main(int argc, char* argv[]){
     if(!chat.empty()){
         int shift = caesarenc.random(1, 10);
         string caesar = caesarenc.caesarencode(chat,shift);
-
-        print << "shift" << shift << endl;
-        print << "caesar" << caesar << endl;
-        print << "raw" << chat << endl;
     }
+
+    int hour,minutes,seconds,milliseconds;
 
     return 0;
 }
