@@ -78,18 +78,15 @@ int main(int argc, char* argv[]){
     chatdata["2"] = Node("rawchat",chat);
     chatdata["3"] = Node("caesar",caesar);
     chatdata["4"] = Node("shift",shift);
-    chatdata["5"] = hours;
-    chatdata["6"] = minutes;
-    chatdata["7"] = seconds;
-    chatdata["8"] = milliseconds;
+    chatdata["5"] = Node("hours",hours);
+    chatdata["6"] = Node("minutes",minutes);
+    chatdata["7"] = Node("seconds",seconds);
+    chatdata["8"] = Node("milliseconds",milliseconds);
 
-    Value chatdatajson(objectValue);
-    for (const auto& entry : chatdata) {
-        chatdatajson[entry.first] = entry.second;
-    }
+    Json chatdatajson;
 
     StyledWriter writer;
-    std::string jsonString = writer.write(chatdatajson);
+    string jsonString = writer.write(chatdatajson);
 
     ofstream outputFile("chat.json");
     if(outputFile.is_open()){
