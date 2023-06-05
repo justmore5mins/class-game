@@ -18,12 +18,21 @@ Caesar caesarenc;
 Time timeelem;
 string caesar;
 
+struct  Node
+{
+    string key,value;
+    Node(const string& k, const string& v: key(k),value(v)){}
+};
+bool operator<(const Node& a, const Node&b){
+    return  stoi(a.key) < stoi(b.key);
+};
+
 int main(int argc, char* argv[]){
     int option;
     bool chatFlag = false;
     string username;
     string chat;
-    int shift;
+    string shift;
 
 //使用者的程式
     while((option = getopt(argc,argv,"u:r:")) != -1){
@@ -51,8 +60,9 @@ int main(int argc, char* argv[]){
     }
 
     if(!chat.empty()){
-        shift = caesarenc.random(1, 10);
-        caesar = caesarenc.caesarencode(chat,shift);
+        int shiftraw = caesarenc.random(1, 10);
+        caesar = caesarenc.caesarencode(chat,shiftraw);
+        shift = to_string(shiftraw);
     }
 
     int hoursraw,minutesraw,secondsraw,millisecondsraw;
@@ -62,16 +72,16 @@ int main(int argc, char* argv[]){
     string seconds = to_string(secondsraw);
     string milliseconds = to_string(millisecondsraw);
 
-    map<string, string> chatdata;
+    map<string, Node, bool(*)(const Node&, const Node&)> chatdata(&operator<);
 
-    chatdata["username"] = username;
-    chatdata["rawchat"] = chat;
-    chatdata["encoded"] = caesar;
-    chatdata["shift"] = shift;
-    chatdata["hours"] = hours;
-    chatdata["minutes"] = minutes;
-    chatdata["seconds"] = seconds;
-    chatdata["milliseconds"] = milliseconds;
+    chatdata["1"] = Node("username",username);
+    chatdata["2"] = Node("rawchat",chat);
+    chatdata["3"] = Node("caesar",caesar);
+    chatdata["4"] = Node("shift",shift);
+    chatdata["5"] = hours;
+    chatdata["6"] = minutes;
+    chatdata["7"] = seconds;
+    chatdata["8"] = milliseconds;
 
     Value chatdatajson(objectValue);
     for (const auto& entry : chatdata) {
