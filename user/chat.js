@@ -1,6 +1,3 @@
-const { error } = require('console');
-const { stdout, stderr } = require('process');
-
 function getchat() {
   const ChatElem = document.getElementById("chat");
   const min = 1;
@@ -26,15 +23,11 @@ function getchat() {
   } else {
     var move = Math.floor(Math.random() * max) + min;
     var sentuser = localStorage.getItem("username");
-    var chatdata = {
-      user: sentuser,
-      decrypt: chat,
-      move: move,
-    };
+    let chatdata = {
+      "username": username,
+      "rawchat"
+    }
   }
-  
-  const {exec} = require('./chat.run ');
-  exec('ls',(error, stdout,stderr))
+
   console.log(chatdata);
 }
-
