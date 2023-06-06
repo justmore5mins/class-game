@@ -1,3 +1,39 @@
+//一堆前置函式
+function caesar(str, num) {
+  let newString = '';
+  // num %= 26;
+
+  for (let i = 0; i < str.length; i++) {
+    let c = str.charCodeAt(i);
+
+    // 大寫
+    if (c >= 65 && c <= 90) {
+      newString += String.fromCharCode((c - 65 + num) % 26 + 65);
+    } else if (c >= 97 && c <= 122) { // 小寫
+      newString += String.fromCharCode((c - 97 + num) % 26 + 97);
+    } else { // 非字母就直接加到輸出的密文
+      newString += str.charAt(i);
+    }
+  }
+  return newString;
+}
+
+function sentdata(url, data) {
+  var xhr = new XMLHttpRequest();
+  var endpoint = '/handle_post';  // 服务器端的路由路径
+  xhr.open('POST', url + endpoint, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = xhr.responseText;
+      // 处理服务器的响应
+      console.log(response);
+    }
+  };
+  xhr.send(JSON.stringify(data));
+}
+
+//主程式內容
 function getchat() {
   const ChatElem = document.getElementById("chat");
   const min = 1;
@@ -38,34 +74,8 @@ function getchat() {
         "milliseconds": timeelem.getMilliseconds()
       }
     }
-    xhr.open('POST',url,true);
-    xhr.setRequestHeader('Content-Type','application/json');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var response = xhr.responseText;  // 获取响应数据
-        console.log("response: ",response)
-      }
-    };
-    xhr.send(JSON.stringify(chatdata)); 
+    sentdata("http://127.0.0.1:5000",chatdata);
     console.log(chatdata);
   }
 }
 
-function caesar(str, num) {
-  let newString = '';
-  // num %= 26;
-
-  for (let i = 0; i < str.length; i++) {
-    let c = str.charCodeAt(i);
-
-    // 大寫
-    if (c >= 65 && c <= 90) {
-      newString += String.fromCharCode((c - 65 + num) % 26 + 65);
-    } else if (c >= 97 && c <= 122) { // 小寫
-      newString += String.fromCharCode((c - 97 + num) % 26 + 97);
-    } else { // 非字母就直接加到輸出的密文
-      newString += str.charAt(i);
-    }
-  }
-  return newString;
-}

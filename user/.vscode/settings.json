@@ -7,5 +7,6 @@
         "iostream": "cpp",
         "iosfwd": "cpp",
         "map": "cpp"
-    }
+    },
+    "livePreview.defaultPreviewPath": "/user.html"
 }
