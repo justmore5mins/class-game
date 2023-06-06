@@ -6,6 +6,9 @@ function getchat() {
   const timeelem = new Date();
   var username = localStorage.getItem("username");
   ChatElem.value = "";
+  var xhr = XMLHttpRequest();
+  var url = "chat.py";
+
 
   if (chat === "/clear console") {
     if (username === "justmore5mins" || "admin" || "Admin") {
@@ -24,10 +27,45 @@ function getchat() {
     var move = Math.floor(Math.random() * max) + min;
     var sentuser = localStorage.getItem("username");
     let chatdata = {
-      "username": username,
-      "rawchat"
+      "username": sentuser,
+      "rawchat":chat,
+      "encrypt":caesar(chat,move),
+      "move":move,
+      "time":{
+        "hour": timeelem.getHours(),
+        "minutes": timeelem.getMinutes(),
+        "seconds": timeelem.getSeconds(),
+        "milliseconds": timeelem.getMilliseconds()
+      }
+    }
+    xhr.open('POST',url,true);
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var response = xhr.responseText;  // 获取响应数据
+        console.log("response: ",response)
+      }
+    };
+    xhr.send(JSON.stringify(data)); 
+    console.log(chatdata);
+  }
+}
+
+function caesar(str, num) {
+  let newString = '';
+  // num %= 26;
+
+  for (let i = 0; i < str.length; i++) {
+    let c = str.charCodeAt(i);
+
+    // 大寫
+    if (c >= 65 && c <= 90) {
+      newString += String.fromCharCode((c - 65 + num) % 26 + 65);
+    } else if (c >= 97 && c <= 122) { // 小寫
+      newString += String.fromCharCode((c - 97 + num) % 26 + 97);
+    } else { // 非字母就直接加到輸出的密文
+      newString += str.charAt(i);
     }
   }
-
-  console.log(chatdata);
+  return newString;
 }
