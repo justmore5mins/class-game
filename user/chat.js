@@ -6,8 +6,8 @@ function getchat() {
   const timeelem = new Date();
   var username = localStorage.getItem("username");
   ChatElem.value = "";
-  var xhr = XMLHttpRequest();
   var url = "chat.py";
+  var xhr = new XMLHttpRequest();
 
 
   if (chat === "/clear console") {
@@ -46,7 +46,7 @@ function getchat() {
         console.log("response: ",response)
       }
     };
-    xhr.send(JSON.stringify(data)); 
+    xhr.send(JSON.stringify(chatdata)); 
     console.log(chatdata);
   }
 }
