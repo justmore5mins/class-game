@@ -1,3 +1,14 @@
 {
-
+   "example":{
+      "sentuser":"Justmore5mins",
+      "raw":"What's up Bro",
+      "encrypt":"Bmfy'x zu Gwt",
+      "shift":5,
+      "time":{
+         "hour":21,
+         "minutes":7,
+         "seconds":30,
+         "milliseconds":500
+      }
+   }
 }
