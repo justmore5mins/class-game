@@ -10,6 +10,17 @@
             "seconds": 30,
             "milliseconds": 500
         }
+    },
+
+    "1":{"username": null,
+    "rawchat": "Test message",
+    "encrypt": "Docd wocckqo",
+    "move": 10,
+    "time": {
+        "hour": 6,
+        "minutes": 17,
+        "seconds": 45,
+        "milliseconds": 741
     }
-    
+   }
 }
