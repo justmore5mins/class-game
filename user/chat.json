@@ -11,16 +11,26 @@
             "milliseconds": 500
         }
     },
-
-    "1":{"username": null,
-    "rawchat": "Test message",
-    "encrypt": "Docd wocckqo",
-    "move": 10,
+    "1": {
+        "username": null,
+        "rawchat": "Test message",
+        "encrypt": "Docd wocckqo",
+        "move": 10,
+        "time": {
+            "hour": 6,
+            "minutes": 17,
+            "seconds": 45,
+            "milliseconds": 741
+        }
+    },
+    "username": "{\"name\":\"justmore5mins\",\"permission\":\"user\"}",
+    "rawchat": "Is there anybody here",
+    "encrypt": "Rb cqnan jwhkxmh qnan",
+    "move": 9,
     "time": {
         "hour": 6,
-        "minutes": 17,
-        "seconds": 45,
-        "milliseconds": 741
+        "minutes": 44,
+        "seconds": 56,
+        "milliseconds": 727
     }
-   }
 }
