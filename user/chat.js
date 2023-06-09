@@ -33,6 +33,25 @@ function sentdata(url, data) {
   xhr.send(JSON.stringify(data));
 }
 
+var preset = {
+  "0":None
+}
+function clearchat(url){
+  var xhr = new XMLHttpRequest();
+  var endpoint = '/clearchat';  // 服务器端的路由路径
+  xhr.open('POST', url + endpoint, true);
+  xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = xhr.responseText;
+      // 处理服务器的响应
+      console.log(response);
+    }
+  };
+
+  xhr.send(preset);
+}
+
 //主程式內容
 function getchat() {
   const ChatElem = document.getElementById("chat");
@@ -52,14 +71,18 @@ function getchat() {
     } else {
       console.log("You don't have so much permission to do it");
     }
-  } else if (chat === "/clear chat localstorage") {
+  } else if (chat === "/clear chat cache") {
     if (username === "justmore5mins" || "admin" || "Admin") {
       localStorage.clear();
       console.log("localstorage cleared");
     } else {
       console.log("You don't have so much permission to do it");
     }
-  } else {
+  }
+  else if(chat === "/clear chat storage"){
+    clearchat("http://127.0.0.1:5000")
+  }
+  else {
     var move = Math.floor(Math.random() * max) + min;
     var sentuser = localStorage.getItem("username");
     let chatdata = {
@@ -79,3 +102,20 @@ function getchat() {
   }
 }
 
+function readmessage(){
+  var xhr = new XMLHttpRequest();
+  var endpoint = '/readmessage';  // 服务器端的路由路径
+  xhr.open('POST', url, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = xhr.responseText;
+      // 处理从Python服务器返回的响应
+      console.log(response);
+    }
+  };
+
+  var data = JSON.stringify({ 'string': str }); // 将字符串转换为JSON格式
+  xhr.send(data);
+}

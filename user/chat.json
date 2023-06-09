@@ -1,26 +1,15 @@
 {
-    "example": {
-        "sentuser": "Justmore5mins",
-        "raw": "What's up Bro",
-        "encrypt": "Bmfy'x zu Gwt",
-        "shift": 5,
-        "time": {
-            "hour": 21,
-            "minutes": 7,
-            "seconds": 30,
-            "milliseconds": 500
-        }
-    },
+    "0": null,
     "1": {
         "username": null,
-        "rawchat": "Test message",
-        "encrypt": "Docd wocckqo",
-        "move": 10,
+        "rawchat": "What's up Bro",
+        "encrypt": "Fqjc'b dy Kax",
+        "move": 9,
         "time": {
-            "hour": 6,
-            "minutes": 17,
-            "seconds": 45,
-            "milliseconds": 741
+            "hour": 22,
+            "minutes": 20,
+            "seconds": 46,
+            "milliseconds": 676
         }
     }
 }

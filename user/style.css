@@ -17,3 +17,20 @@
     bottom: 1.5%;
     left: 96%;
 }
+
+#chatbox{
+    font-family: 'Monomaniac One', sans-serif;
+    overflow-y: auto;
+    border: 1px solid #202124;
+    padding: 10px;
+}
+
+.message.sent {
+    text-align: right; /* 自己发送的消息右对齐 */
+    background-color: #0ce86f; /* 自己发送的消息背景颜色 */
+  }
+  
+.message.received {
+    text-align: left; /* 别人发送的消息左对齐 */
+    background-color: #0aadff /* 别人发送的消息背景颜色 */
+  }
