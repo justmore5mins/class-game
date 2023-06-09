@@ -49,5 +49,11 @@ def clearchat():
         dump(data, write, indent=4)
     return "()",200
 
+@app.route("/sentchat",methods=['POST'])
+def sentchat():
+    data = request.get_json()
+    message = data['message']
+    
+
 if __name__ == "__main__":
     app.run()

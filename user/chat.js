@@ -18,21 +18,9 @@ function caesar(str, num) {
   return newString;
 }
 
-function sentdata(url, data) {
-  var xhr = new XMLHttpRequest();
-  var endpoint = '/handle_post';  // 服务器端的路由路径
-  xhr.open('POST', url + endpoint, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var response = xhr.responseText;
-      // 处理服务器的响应
-      console.log(response);
-    }
-  };
-  xhr.send(JSON.stringify(data));
+function showchat(event){
+  event.preventDefault();
 }
-
 var preset = {
   "0":None
 }
@@ -50,6 +38,11 @@ function clearchat(url){
   };
 
   xhr.send(preset);
+}
+
+function readchat(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/sentchat', true);
 }
 
 //主程式內容
@@ -100,22 +93,4 @@ function getchat() {
     sentdata("http://127.0.0.1:5000",chatdata);
     console.log(chatdata);
   }
-}
-
-function readmessage(){
-  var xhr = new XMLHttpRequest();
-  var endpoint = '/readmessage';  // 服务器端的路由路径
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var response = xhr.responseText;
-      // 处理从Python服务器返回的响应
-      console.log(response);
-    }
-  };
-
-  var data = JSON.stringify({ 'string': str });
-  xhr.send(data);
 }

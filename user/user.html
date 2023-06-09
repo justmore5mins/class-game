@@ -2,27 +2,32 @@
 
 <html>
 
-    <head>
-        <title>Chat Place</title>
-        <meta name="author" content="justmorem5insYT offical">
-        <meta name="robots" content="none">
-        <meta charset="utf-8">
+<head>
+    <title>Chat Place</title>
+    <meta name="author" content="justmorem5insYT offical">
+    <meta name="robots" content="none">
+    <meta charset="utf-8">
 
-        <script src="chat.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
-    </head>
+    <script src="chat.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monomaniac+One&display=swap" rel="stylesheet">
+</head>
 
-    <body bgcolor="#202124">
-        <input placeholder="Type something you want to write to your partner" class="chat" style="width: 95%;" id="chat">
+<body bgcolor="#202124">
+    <input placeholder="Type something you want to write to your partner" class="chat" style="width: 95%;" id="chat">
+    <button class="sumbit" onclick="getchat()">
+        <img src="photos/sent.png" alt="sent">
+    </button>
+    <div id="chatbox"></div>
+    <form id="form">
+        <input placeholder="Type something you want to write to your partner" class="chat" style="width: 95%;"
+            id="chat">
         <button class="sumbit" onclick="getchat()">
             <img src="photos/sent.png" alt="sent">
         </button>
-        <div id="chatbox">
-
-        </div>
-    </body>
+    </form>
+</body>
 
 </html>
