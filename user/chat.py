@@ -1,5 +1,5 @@
 from flask_cors import CORS
-from flask import Flask,request
+from flask import Flask,request,jsonify
 from json import load, dump, JSONDecodeError
 
 app = Flask(__name__)
@@ -48,6 +48,22 @@ def clearchat():
     with open("chat.json", "w", encoding="utf-8") as write:
         dump(data, write, indent=4)
     return "()",200
+
+@app.route("/sentdata",methods=['GET'])
+def sentdata():
+    sentdata = {}
+    with open("chat.json") as file:
+        data = load(file)
+        
+    for key,value in data.items():
+        message = value["encrypt"]
+        user = value["username"]
+        dataprepare = {
+            "username":user,
+            "message":message,
+        }
+        sentdata.update(dataprepare)
+    return sentdata
 
 if __name__ == "__main__":
     app.run()

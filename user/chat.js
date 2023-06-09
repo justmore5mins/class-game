@@ -1,6 +1,3 @@
-const messageForm = document.getElementById('chat');
-messageForm.addEventListener('submit', sendMessage);
-
 //一堆前置函式
 function caesar(str, num) {
   let newString = ''
@@ -36,44 +33,7 @@ function sentdata(url, data) {
   xhr.send(JSON.stringify(data));
 }
 
-function showchat(event, chat) {
-  event.preventDefault()
-  const input = document.getElementById("chat")
-  const message = input.value
 
-  const encrypt = chat
-  const xhr = new XMLHttpRequest()
-  xhr.open('POST', "/sentchat", true)
-  xhr.setRequestHeader('Content-Type', 'application/json')
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      // 处理服务器的响应
-      const response = JSON.parse(xhr.responseText)
-      if (response.status === 'success') {
-        // 在前端显示加密后的消息（发送者为自己）
-        displayMessage(encryptedMessage, true)
-      }
-    }
-  }
-  xhr.send(JSON.stringify({ message: encryptedMessage }))
-
-  messageInput.value = ''
-  const box = document.getElementById("chatbox")
-  const messagebox = document.createElement('div')
-  messagebox.classList.add("message")
-  if (sentBySelf) {
-    messageDiv.classList.add('sent');
-  } else {
-    messageDiv.classList.add('received');
-  }
-
-  messagebox.textContent = message
-  chatContainer.appendChild(messageDiv);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-}
-var preset = {
-  "0": None
-}
 function clearchat(url) {
   var xhr = new XMLHttpRequest()
   var endpoint = '/clearchat'  // 服务器端的路由路径
@@ -90,9 +50,32 @@ function clearchat(url) {
   xhr.send(preset)
 }
 
+function getmessage(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/sentdata');
+}
+
+function showchat(){
+  var messages = document.getElementById("chat")
+  messages.innerHTML = ''
+  messages.forEach(function(message) {
+    var messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    chatMessages.appendChild(messageElement);
+  });
+}
+setInterval(getmessage,100)
+
 function readchat() {
   var xhr = new XMLHttpRequest()
-  xhr.open('GET', '/sentchat', true)
+  xhr.open('GET', '/sentdata')
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4 && xhr.status === 200){
+      var response = JSON.parse(xhr.responseText);
+      var messages = response.messages;
+    }
+  }
+  xhr.send()
 }
 
 //主程式內容
