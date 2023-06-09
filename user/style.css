@@ -25,6 +25,13 @@
     padding: 10px;
 }
 
+.chatbox{
+    font-family: 'Monomaniac One', sans-serif;
+    overflow-y: auto;
+    border: 1px solid #202124;
+    padding: 10px;
+}
+
 .message.sent {
     text-align: right; /* 自己发送的消息右对齐 */
     background-color: #0ce86f; /* 自己发送的消息背景颜色 */
