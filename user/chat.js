@@ -116,6 +116,6 @@ function readmessage(){
     }
   };
 
-  var data = JSON.stringify({ 'string': str }); // 将字符串转换为JSON格式
+  var data = JSON.stringify({ 'string': str });
   xhr.send(data);
 }
