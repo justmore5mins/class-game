@@ -1,5 +1,5 @@
-from flask import Flask, request
 from flask_cors import CORS
+from flask import Flask,request
 from json import load, dump, JSONDecodeError
 
 app = Flask(__name__)
