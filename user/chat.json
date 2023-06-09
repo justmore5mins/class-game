@@ -1,3 +1,15 @@
 {
-    "0": null
+    "0": null,
+    "1": {
+        "username": null,
+        "rawchat": "",
+        "encrypt": "",
+        "move": 3,
+        "time": {
+            "hour": 22,
+            "minutes": 45,
+            "seconds": 39,
+            "milliseconds": 878
+        }
+    }
 }

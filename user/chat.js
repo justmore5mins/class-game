@@ -21,6 +21,21 @@ function caesar(str, num) {
   return newString
 }
 
+function sentdata(url, data) {
+  var xhr = new XMLHttpRequest();
+  var endpoint = '/writechat';  // 服务器端的路由路径
+  xhr.open('POST', url + endpoint, true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      var response = xhr.responseText;
+      // 处理服务器的响应
+      console.log(response);
+    }
+  };
+  xhr.send(JSON.stringify(data));
+}
+
 function showchat(event, chat) {
   event.preventDefault()
   const input = document.getElementById("chat")

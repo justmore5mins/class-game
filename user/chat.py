@@ -28,8 +28,8 @@ def updatechat(data):
         dump(dataread, write, indent=4)
     return '',200
 
-@app.route('/handle_post', methods=['POST'])
-def handle_post():
+@app.route('/writechat', methods=['POST'])
+def writechat():
     if request.method == 'OPTIONS':
         # 返回预检请求的响应
         return '', 200
