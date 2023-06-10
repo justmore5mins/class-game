@@ -49,7 +49,7 @@ def clearchat():
         dump(data, write, indent=4)
     return "()",200
 
-@app.route("/sentdata",methods=['GET'])
+@app.route("/api/sentdata",methods=['GET'])
 def sentdata():
     sentdata = {}
     with open("chat.json") as file:
@@ -63,7 +63,7 @@ def sentdata():
             "message":message,
         }
         sentdata.update(dataprepare)
-    return sentdata
+    return jsonify(sentdata)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5000)

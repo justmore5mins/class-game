@@ -21,7 +21,7 @@ function caesar(str, num) {
 function sentdata(url, data) {
   var xhr = new XMLHttpRequest();
   var endpoint = '/writechat';  // 服务器端的路由路径
-  xhr.open('POST', url + endpoint, true);
+  xhr.open('POST',"http://127.0.0.1/writedata", true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -34,10 +34,9 @@ function sentdata(url, data) {
 }
 
 
-function clearchat(url) {
+function clearchat() {
   var xhr = new XMLHttpRequest()
-  var endpoint = '/clearchat'  // 服务器端的路由路径
-  xhr.open('POST', url + endpoint, true)
+  xhr.open('POST',"http://127.0.0.1/clearchat", true)
   xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded")
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
@@ -49,36 +48,38 @@ function clearchat(url) {
 
   xhr.send(preset)
 }
-
-function getmessage(){
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/sentdata');
-}
-
-function showchat(){
-  var messages = document.getElementById("chat")
-  messages.innerHTML = ''
-  messages.forEach(function(message) {
-    var messageElement = document.createElement('div');
-    messageElement.textContent = message;
-    chatMessages.appendChild(messageElement);
-  });
-}
-setInterval(getmessage,100)
-
 function readchat() {
-  var xhr = new XMLHttpRequest()
-  xhr.open('GET', '/sentdata')
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState === 4 && xhr.status === 200){
-      var response = JSON.parse(xhr.responseText);
-      var messages = response.messages;
-    }
-  }
-  xhr.send()
-}
+  const socket = new WebSocket("ws://127.0.0.1:3000/")
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'api/sentdata');
+  xhr.send();
+  socket.addEventListener('open', event => {
+    console.log('WebSocket 连接已建立');
+  
+    // 发送消息到服务器
+    socket.send('Hello, server!');
+  });
+  socket.addEventListener('message', event => {
+    // 接收从服务器发送的消息
+    const message = event.data;
+    console.log('接收到消息:', message);
+  });
 
-//主程式內容
+fetch("/sentdata",{
+  method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify()
+  })
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("chatbox")
+    container.innerHTML += `<p>${data.response}</p>`;
+  }
+  )
+  getchat()
+}
 function getchat() {
   const ChatElem = document.getElementById("chat")
   const window = document.getElementById("chatbox")
@@ -125,3 +126,5 @@ function getchat() {
     console.log(chatdata)
   }
 }
+
+setInterval(readchat,500)
