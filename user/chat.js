@@ -81,15 +81,13 @@ function readchat() {
 //主程式內容
 function getchat() {
   const ChatElem = document.getElementById("chat")
+  const window = document.getElementById("chatbox")
   const min = 1
   const max = 10
   const chat = ChatElem.value
   const timeelem = new Date()
   var username = localStorage.getItem("username")
   ChatElem.value = ""
-  var url = "chat.py"
-  var xhr = new XMLHttpRequest()
-
 
   if (chat === "/clear console") {
     if (username === "justmore5mins" || "admin" || "Admin") {
