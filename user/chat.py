@@ -1,6 +1,6 @@
 from flask_cors import CORS
 from flask import Flask,request,jsonify
-from json import load, dump, JSONDecodeError
+from simplejson import load, dump, JSONDecodeError
 
 app = Flask(__name__)
 CORS(app)
@@ -28,7 +28,7 @@ def updatechat(data):
         dump(dataread, write, indent=4)
     return '',200
 
-@app.route('/writechat', methods=['POST'])
+@app.route('//writechat', methods=['POST'])
 def writechat():
     if request.method == 'OPTIONS':
         # 返回预检请求的响应

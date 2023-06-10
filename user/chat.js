@@ -21,7 +21,7 @@ function caesar(str, num) {
 function sentdata(url, data) {
   var xhr = new XMLHttpRequest();
   var endpoint = '/writechat';  // 服务器端的路由路径
-  xhr.open('POST',"http://127.0.0.1/writedata", true);
+  xhr.open('POST', 'http://127.0.0.1/writedata', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
