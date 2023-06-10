@@ -34,20 +34,6 @@ function sentdata(url, data) {
 }
 
 
-function clearchat() {
-  var xhr = new XMLHttpRequest()
-  xhr.open('POST',"http://127.0.0.1/clearchat", true)
-  xhr.setRequestHeader('Content-Type', "application/x-www-form-urlencoded")
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.status === 200) {
-      var response = xhr.responseText
-      // 处理服务器的响应
-      console.log(response)
-    }
-  }
-
-  xhr.send(preset)
-}
 function readchat() {
   const socket = new WebSocket("ws://127.0.0.1:3000/")
   var xhr = new XMLHttpRequest();

@@ -1,9 +1,11 @@
+# pylint: disable=E0401
+# pylint: disable=C0116
 from flask_cors import CORS
 from flask import Flask,request,jsonify
 from simplejson import load, dump, JSONDecodeError
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins='http://127.0.0.1:3000', methods=['GET', 'POST'])
 
 default = {
     "0":None
@@ -28,7 +30,7 @@ def updatechat(data):
         dump(dataread, write, indent=4)
     return '',200
 
-@app.route('//writechat', methods=['POST'])
+@app.route('/writechat', methods=['POST'])
 def writechat():
     if request.method == 'OPTIONS':
         # 返回预检请求的响应
@@ -37,17 +39,6 @@ def writechat():
     data = request.get_json()
     updatechat(data)
     return '',200
-@app.route("/clearchat", methods=['POST'])
-def clearchat():
-    if request.method == 'OPTIONS':
-        # 返回预检请求的响应
-        return '', 200
-    
-    data = request.get_json
-    
-    with open("chat.json", "w", encoding="utf-8") as write:
-        dump(data, write, indent=4)
-    return "()",200
 
 @app.route("/api/sentdata",methods=['GET'])
 def sentdata():
